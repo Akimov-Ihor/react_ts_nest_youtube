@@ -9,8 +9,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
 let AppService = class AppService {
-    getHello() {
-        return 'Hello World!';
+    async autorizationGoogleServiese(req, client) {
+        const { token } = req.body;
+        const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: process.env.CLIENT_ID,
+        });
+        const { name, email, picture } = ticket.getPayload();
+        return { name, email, picture };
     }
 };
 AppService = __decorate([

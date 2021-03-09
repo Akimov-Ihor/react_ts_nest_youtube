@@ -1,3 +1,3 @@
 export declare class AppService {
-    getHello(): string;
+    autorizationGoogleServiese(req: any, client: any): Promise<any>;
 }

@@ -18,28 +18,19 @@ const app_service_1 = require("./app.service");
 const google_auth_library_1 = require("google-auth-library");
 const client = new google_auth_library_1.OAuth2Client(process.env.CLIENT_ID);
 let AppController = class AppController {
-    constructor(appService) {
-        this.appService = appService;
-    }
-    getHello() {
-        return this.appService.getHello();
+    constructor(AppService) {
+        this.AppService = AppService;
     }
     async authorizeGoogle(req) {
-        const { token } = req.body;
-        const ticket = await client.verifyIdToken({
-            idToken: token,
-            audience: process.env.CLIENT_ID,
-        });
-        const { name, email, picture } = ticket.getPayload();
-        return { name, email, picture };
+        try {
+            const body = await this.AppService.autorizationGoogleServiese(req, client);
+            console.log(body);
+            return body;
+        }
+        catch (e) {
+        }
     }
 };
-__decorate([
-    common_1.Get(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
-], AppController.prototype, "getHello", null);
 __decorate([
     common_1.Post('/google'),
     __param(0, common_1.Req()),
