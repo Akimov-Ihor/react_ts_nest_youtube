@@ -8,20 +8,24 @@ export const Login:React.FC =() => {
     console.log(response);
   }
 
-  const handleLogin = async ({tokenId}:any) => {
-        const res = await fetch("http://localhost:5000/google", {
-            method: "GET",
-            // body: JSON.stringify({
-            //     token: tokenId
-            // }),
-            // headers: {
-            //     "Content-Type": "application/json"
-            // }
-        })
-        const data = await res
-        console.log(data)
-        // store returned user somehow
-    }
+  const handleLogin = async (googleData:any) => {
+    const res = await fetch("/api/v1/auth/google", {
+        method: "POST",
+        body: JSON.stringify({
+        token: googleData.tokenId
+      }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    const data = await res.json()
+    console.log(data)
+    // store returned user somehow
+  }
+  console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID)
+
+
+
     return (
         <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 450 }}>
@@ -46,7 +50,7 @@ export const Login:React.FC =() => {
                     </Segment>
                 </Form>
                 <GoogleLogin
-                    clientId="693589886641-op4l6rjlsg2c8vc2jt7mkia7f5eeh0jf.apps.googleusercontent.com"
+                    clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
                     buttonText="Log in with Google"
                     onSuccess={responseGoogle}
                     onFailure={responseGoogle}
