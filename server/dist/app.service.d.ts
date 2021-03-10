@@ -1,3 +1,5 @@
 export declare class AppService {
-    autorizationGoogleServiese(req: any, client: any): Promise<any>;
+    authorisationGoogleService({ token }: {
+        token: any;
+    }): Promise<any>;
 }

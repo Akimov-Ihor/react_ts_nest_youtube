@@ -15,19 +15,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
-const google_auth_library_1 = require("google-auth-library");
-const client = new google_auth_library_1.OAuth2Client(process.env.CLIENT_ID);
 let AppController = class AppController {
     constructor(AppService) {
         this.AppService = AppService;
     }
     async authorizeGoogle(req, res) {
         try {
-            const body = await this.AppService.autorizationGoogleServiese(req, client);
-            res.status(common_1.HttpStatus.OK).send(body);
+            const { token } = req.body;
+            const body = await this.AppService.authorisationGoogleService({
+                token,
+            });
+            return body;
         }
         catch (e) {
-            res.status(common_1.HttpStatus.BAD_REQUEST).send(e);
+            console.log(e);
         }
     }
 };

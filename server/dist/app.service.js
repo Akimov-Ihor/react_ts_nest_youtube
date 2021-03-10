@@ -8,14 +8,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
+const typeorm_1 = require("typeorm");
+const User_entity_1 = require("./entities/User.entity");
+const google_auth_library_1 = require("google-auth-library");
+const client = new google_auth_library_1.OAuth2Client(process.env.CLIENT_ID);
 let AppService = class AppService {
-    async autorizationGoogleServiese(req, client) {
-        const { token } = req.body;
-        const ticket = await client.verifyIdToken({
-            idToken: token,
-            audience: process.env.CLIENT_ID,
-        });
-        const { name, email, picture } = ticket.getPayload();
+    async authorisationGoogleService({ token }) {
+        const ticket = await client.verifyIdToken({ idToken: token });
+        const { name, email, picture, sub } = ticket.getPayload();
+        const currentUser = await typeorm_1.getRepository(User_entity_1.User)
+            .createQueryBuilder()
+            .where('email = :email OR google_id = :google_id', {
+            email,
+            google_id: sub,
+        })
+            .getOne();
+        if (!currentUser) {
+            await typeorm_1.getConnection()
+                .createQueryBuilder()
+                .insert()
+                .into(User_entity_1.User)
+                .values([{ name, email, picture, google_id: sub }])
+                .execute();
+        }
         return { name, email, picture };
     }
 };
