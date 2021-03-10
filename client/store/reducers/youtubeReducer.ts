@@ -1,4 +1,4 @@
-export const plannerReducer = (state = initialState, action) => {
+export const plannerReducer = () => {
   switch (action.type) {
     case types.LOGIN_REQUEST: {
       return {
