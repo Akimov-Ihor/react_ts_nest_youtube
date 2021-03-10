@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
+
 export class AppService {
   async autorizationGoogleServiese(req, client): Promise<any> {
     const { token } = req.body;

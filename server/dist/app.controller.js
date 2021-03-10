@@ -21,21 +21,21 @@ let AppController = class AppController {
     constructor(AppService) {
         this.AppService = AppService;
     }
-    async authorizeGoogle(req) {
+    async authorizeGoogle(req, res) {
         try {
             const body = await this.AppService.autorizationGoogleServiese(req, client);
-            console.log(body);
-            return body;
+            res.status(common_1.HttpStatus.OK).send(body);
         }
         catch (e) {
+            res.status(common_1.HttpStatus.BAD_REQUEST).send(e);
         }
     }
 };
 __decorate([
     common_1.Post('/google'),
-    __param(0, common_1.Req()),
+    __param(0, common_1.Req()), __param(1, common_1.Res()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], AppController.prototype, "authorizeGoogle", null);
 AppController = __decorate([

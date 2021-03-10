@@ -1,4 +1,4 @@
-import { Req, Controller, Post, HttpCode, HttpStatus } from '@nestjs/common';
+import { Req, Controller, Post, HttpCode, HttpStatus, Res } from '@nestjs/common';
 import  {AppService}  from './app.service';
 
 import { OAuth2Client } from 'google-auth-library';
@@ -10,14 +10,16 @@ export class AppController {
 
 
   @Post('/google')
-  async authorizeGoogle(@Req() req) {
+  async authorizeGoogle(@Req() req , @Res() res) {
     try{
      const body = await this.AppService.autorizationGoogleServiese(req,client)
       //  @HttpCode(HttpStatus.OK);
-      console.log(body)
-       return body
+      res.status(HttpStatus.OK).send(body)
+      // console.log(body)
+      //  return body
     }catch(e){
-      // @HttpCode(HttpStatus.BAD_REQUEST);
+      res.status(HttpStatus.BAD_REQUEST).send(e)
+      
     }
    
      
