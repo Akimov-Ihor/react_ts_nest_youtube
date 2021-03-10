@@ -9,7 +9,7 @@ export const Login:React.FC =() => {
   }
 
   const handleLogin = async (googleData:any) => {
-    const res = await fetch("/api/v1/auth/google", {
+    const res = await fetch("http://localhost:5000/google", {
         method: "POST",
         body: JSON.stringify({
         token: googleData.tokenId
@@ -52,8 +52,8 @@ export const Login:React.FC =() => {
                 <GoogleLogin
                     clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
                     buttonText="Log in with Google"
-                    onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
+                    onSuccess={handleLogin}
+                    onFailure={handleLogin}
                     cookiePolicy="single_host_origin"
                 />
 
