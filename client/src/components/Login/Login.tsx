@@ -1,62 +1,51 @@
-import React from 'react'
-import {Grid,Form,Header,Button,Segment} from "semantic-ui-react";
-import {GoogleLogin} from 'react-google-login'
+import React from 'react';
 
-export const Login:React.FC =() => {
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import {
+  Grid, Header, Segment,
+} from 'semantic-ui-react';
+import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
+import { startLogin } from '../../store/actions/user/user.actions';
 
+export const Login:React.FC = () => {
+  const dispatch = useDispatch();
+  const isLoggingIn = useSelector<RootStateOrAny>((state) => state.user.userData.isLoggingIn);
 
+  const isGoogleLoginResponse = (response: GoogleLoginResponse | GoogleLoginResponseOffline):
+    response is GoogleLoginResponse => {
+    return !!response && typeof response === 'object' && !!(response as GoogleLoginResponse).tokenObj;
+  };
 
-  const handleLogin = async (googleData:any) => {
-    const res = await fetch("http://localhost:5000/google", {
-        method: "POST",
-        body: JSON.stringify({
-        token: googleData.tokenId
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    const data = await res.json()
-    console.log(data)
-    // store returned user somehow
-  }
-  console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID)
+  const handleLogin = async (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+    if (!isGoogleLoginResponse(response)) {
+      return;
+    }
+    const token = response.tokenId;
+    await startLogin({ token })(dispatch);
+  };
 
-
-
-    return (
-        <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
-            <Grid.Column style={{ maxWidth: 450 }}>
-                <Header as='h2' color='teal' textAlign='center'>
-                    {/* <Image src='/logo.png' /> */}
-                    Log-in to your account
-                </Header>
-
-                    <Segment stacked>
-                        <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
-                        <Form.Input
-                            fluid
-                            icon='lock'
-                            iconPosition='left'
-                            placeholder='Password'
-                            type='password'
-                        />
-
-                        <Button color='teal' fluid size='large'>
-                            Login
-                        </Button>
-                    </Segment>
-
-                <GoogleLogin
-                    clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
-                    buttonText="Log in with Google"
-                    onSuccess={handleLogin}
-                    onFailure={handleLogin}
-                    cookiePolicy="single_host_origin"
-                />
-
-            </Grid.Column>
+  return (
+    <>
+      {isLoggingIn ? (
+        <Grid textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as="h2" color="teal" textAlign="center">
+              {/* <Image src='/logo.png' /> */}
+              Log-in to your account
+            </Header>
+            <Segment stacked>
+              <GoogleLogin
+                clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
+                buttonText="Log in with Google"
+                onSuccess={handleLogin}
+                onFailure={handleLogin}
+                cookiePolicy="single_host_origin"
+              />
+            </Segment>
+          </Grid.Column>
         </Grid>
-        )
-
-}
+      )
+        : null}
+    </>
+  );
+};

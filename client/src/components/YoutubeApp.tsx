@@ -1,15 +1,12 @@
 import React from 'react';
-import {Login} from './Login/Login'
-
+import { Login } from './Login/Login';
 
 import './YoutubeApp.css';
 
-export const YoutubeApp:React.FC =()=> {
+export const YoutubeApp:React.FC = () => {
   return (
     <div className="youtubeApp">
-     <Login/>
+      <Login />
     </div>
   );
-}
-
-
+};

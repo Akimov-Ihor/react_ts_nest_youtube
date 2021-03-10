@@ -1,13 +1,12 @@
-
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { devToolsEnhancer } from 'redux-devtools-extension';
 
-import { plannerReducer } from './reducers/plannerReducer';
-import { verifyAuth } from './actions/planner.actions';
-import { initialState } from './initialState';
+import { rootReducer } from './reducers/root.reducer';
 
-const enhancers = [devToolsEnhancer()];
+const initialState = {};
+
+const enhancers = [devToolsEnhancer({})];
 
 const middleware = [thunk];
 
@@ -18,9 +17,10 @@ const composedEnhancers = compose(
 
 export const store = (function configureStore() {
   const reduxStore = createStore(
-    plannerReducer,
+    rootReducer,
     initialState,
-    composedEnhancers,
+    composedEnhancers as any,
   );
   // reduxStore.dispatch(verifyAuth());
-  return redux
+  return reduxStore;
+}());

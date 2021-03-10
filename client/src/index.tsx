@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {YoutubeApp} from './components/YoutubeApp';
-import {reportWebVitals} from './reportWebVitals';
+// @ts-ignore
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
-import 'semantic-ui-css/semantic.min.css'
+import { YoutubeApp } from './components/YoutubeApp';
+
+import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 
-
 ReactDOM.render(
-    <YoutubeApp />,
-  document.getElementById('root')
+  <Provider store={store}>
+    <YoutubeApp />
+  </Provider>,
+  document.getElementById('root'),
 );
-
-reportWebVitals();
