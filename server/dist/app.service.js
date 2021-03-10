@@ -10,13 +10,11 @@ exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("typeorm");
 const User_entity_1 = require("./entities/User.entity");
+const google_auth_library_1 = require("google-auth-library");
+const client = new google_auth_library_1.OAuth2Client(process.env.CLIENT_ID);
 let AppService = class AppService {
-    async authorisationGoogleService(req, client) {
-        const { token } = req.body;
-        const ticket = await client.verifyIdToken({
-            idToken: token,
-            audience: process.env.CLIENT_ID,
-        });
+    async authorisationGoogleService({ token }) {
+        const ticket = await client.verifyIdToken({ idToken: token });
         const { name, email, picture, sub } = ticket.getPayload();
         const currentUser = await typeorm_1.getRepository(User_entity_1.User)
             .createQueryBuilder()

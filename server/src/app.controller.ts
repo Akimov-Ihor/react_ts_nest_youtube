@@ -1,8 +1,5 @@
-import { Req, Controller, Post, HttpCode, HttpStatus } from '@nestjs/common';
+import { Req, Controller, Post } from '@nestjs/common';
 import { AppService } from './app.service';
-
-import { OAuth2Client } from 'google-auth-library';
-const client = new OAuth2Client(process.env.CLIENT_ID);
 
 @Controller()
 export class AppController {
@@ -11,15 +8,13 @@ export class AppController {
   @Post('/google')
   async authorizeGoogle(@Req() req) {
     try {
-      const body = await this.AppService.authorisationGoogleService(
-        req,
-        client,
-      );
-      //  @HttpCode(HttpStatus.OK);
-      console.log(body);
+      const { token } = req.body;
+      const body = await this.AppService.authorisationGoogleService({
+        token,
+      });
       return body;
     } catch (e) {
-      // @HttpCode(HttpStatus.BAD_REQUEST);
+      console.log(e);
     }
   }
 }

@@ -2,14 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { getConnection, getRepository } from 'typeorm';
 import { User } from './entities/User.entity';
 
+import { OAuth2Client } from 'google-auth-library';
+const client = new OAuth2Client(process.env.CLIENT_ID);
+
 @Injectable()
 export class AppService {
-  async authorisationGoogleService(req, client): Promise<any> {
-    const { token } = req.body;
-    const ticket = await client.verifyIdToken({
-      idToken: token,
-      audience: process.env.CLIENT_ID,
-    });
+  async authorisationGoogleService({ token }): Promise<any> {
+    const ticket = await client.verifyIdToken({ idToken: token });
 
     const { name, email, picture, sub } = ticket.getPayload();
     const currentUser = await getRepository(User)

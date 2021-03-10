@@ -2796,11 +2796,6 @@
         "signature": "9495389c14ca8327e791a2002a39c1ea9a90b45b921daa37984dbecaeb34d5b8",
         "affectsGlobalScope": false
       },
-      "../src/app.service.ts": {
-        "version": "666ea4abb200c04d7740112175858fe5f51b9a0623574bce7bbb4294f5d6d547",
-        "signature": "e9dc1762690a538af310e4e860afef32e52049bae51370ee77c2e1fae29233e9",
-        "affectsGlobalScope": false
-      },
       "../node_modules/@types/node/globals.d.ts": {
         "version": "25b4a0c4fab47c373ee49df4c239826ee3430019fc0c1b5e59edc3e398b7468d",
         "signature": "25b4a0c4fab47c373ee49df4c239826ee3430019fc0c1b5e59edc3e398b7468d",
@@ -3161,8 +3156,13 @@
         "signature": "ee620f6094175b6faf2c6d2409ab000ce4c265b947f7cbe15ac839ee8d83a7d7",
         "affectsGlobalScope": false
       },
+      "../src/app.service.ts": {
+        "version": "bb2e8e4d6ff85f01eee2ee07fae2f60de756048f06389907768862eca2234c77",
+        "signature": "32979a124a878683fdf10dbe5cd57e08c443df9198e32efcf6a52045a05af8d0",
+        "affectsGlobalScope": false
+      },
       "../src/app.controller.ts": {
-        "version": "a3c5472bb851dd6ee54f0b74c10510814fa484a36dc82339dfed5d6448cdba99",
+        "version": "fba9b229be46d1866b4499d2afcf60c60d6cc6622d471c501d711fdc05d5211d",
         "signature": "09d9c7f152c10badf5c241bf3d094ab1639f0d9d605a9db17533bd7fcca6a6d0",
         "affectsGlobalScope": false
       },
@@ -6487,7 +6487,6 @@
       ],
       "../src/app.controller.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
-        "../node_modules/google-auth-library/build/src/index.d.ts",
         "../src/app.service.ts"
       ],
       "../src/app.module.ts": [
@@ -6498,6 +6497,7 @@
       ],
       "../src/app.service.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/google-auth-library/build/src/index.d.ts",
         "../node_modules/typeorm/index.d.ts",
         "../src/entities/User.entity.ts"
       ],
