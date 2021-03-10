@@ -4,9 +4,7 @@ import {GoogleLogin} from 'react-google-login'
 
 export const Login:React.FC =() => {
 
-  const responseGoogle = (response:any) => {
-    console.log(response);
-  }
+
 
   const handleLogin = async (googleData:any) => {
     const res = await fetch("http://localhost:5000/google", {
@@ -33,7 +31,7 @@ export const Login:React.FC =() => {
                     {/* <Image src='/logo.png' /> */}
                     Log-in to your account
                 </Header>
-                <Form size='large'>
+
                     <Segment stacked>
                         <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
                         <Form.Input
@@ -48,7 +46,7 @@ export const Login:React.FC =() => {
                             Login
                         </Button>
                     </Segment>
-                </Form>
+
                 <GoogleLogin
                     clientId={`${process.env.REACT_APP_GOOGLE_CLIENT_ID}`}
                     buttonText="Log in with Google"

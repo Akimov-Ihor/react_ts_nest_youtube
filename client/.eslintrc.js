@@ -15,18 +15,26 @@ module.exports = {
         Atomics: 'readonly',
         SharedArrayBuffer: 'readonly',
     },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'], // Your TypeScript files extension
+      parserOptions: {
+        project: ['./tsconfig.json'], // Specify it only for TypeScript files
+      },
+    }
+  ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
             jsx: true,
         },
         ecmaVersion: 2018,
-        tsconfigRootDir: __dirname,
         sourceType: 'module',
         project: './tsconfig.json',
     },
     rules: {
-        // 'linebreak-style': 'off',
+       'import/extensions': 'off',
+        'linebreak-style': 'off',
         "import/prefer-default-export": 0,
         "import/no-default-export": "error",
         "no-multi-spaces": "error",
