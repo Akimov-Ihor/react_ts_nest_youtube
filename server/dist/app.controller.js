@@ -23,7 +23,7 @@ let AppController = class AppController {
     }
     async authorizeGoogle(req) {
         try {
-            const body = await this.AppService.autorizationGoogleServiese(req, client);
+            const body = await this.AppService.authorisationGoogleService(req, client);
             console.log(body);
             return body;
         }
