@@ -6,7 +6,6 @@ import { OAuth2Client } from 'google-auth-library';
 const client = new OAuth2Client(process.env.CLIENT_ID);
 
 @Injectable()
-
 export class AppService {
   async authorisationGoogleService({ token }): Promise<any> {
     const ticket = await client.verifyIdToken({ idToken: token });
