@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
 import {
   Grid, Header, Segment,
 } from 'semantic-ui-react';
 import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
+
 import { startLogin } from '../../store/actions/user/user.actions';
+
+import { UserDataINF } from '../../interface/userInterface';
+import { MainStoreINT } from '../../interface/mainStoreInterface';
 
 export const Login:React.FC = () => {
   const dispatch = useDispatch();
-  const isLoggingIn = useSelector<RootStateOrAny>((state) => state.user.userData.isLoggingIn);
+  const history = useHistory();
+
+  const isVerifyingAuth: boolean = useSelector((state: MainStoreINT) => state.user.isVerifyingAuth);
+  const userData: UserDataINF = useSelector((state: MainStoreINT) => state.user.userData);
 
   const isGoogleLoginResponse = (response: GoogleLoginResponse | GoogleLoginResponseOffline):
     response is GoogleLoginResponse => {
@@ -24,9 +33,15 @@ export const Login:React.FC = () => {
     await startLogin({ token })(dispatch);
   };
 
+  useEffect(() => {
+    if (userData && !isVerifyingAuth) {
+      history.push('/');
+    }
+  });
+  console.log(!isVerifyingAuth && !userData);
   return (
     <>
-      {!isLoggingIn ? (
+      {!isVerifyingAuth && !userData && (
         <Grid textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as="h2" color="teal" textAlign="center">
@@ -44,8 +59,7 @@ export const Login:React.FC = () => {
             </Segment>
           </Grid.Column>
         </Grid>
-      )
-        : null}
+      )}
     </>
   );
 };

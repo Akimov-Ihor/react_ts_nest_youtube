@@ -1,7 +1,7 @@
 import { LOGIN_SUCCESS } from '../../actions/user/user.actions';
 
 const initialState = {
-  userData: {},
+  userData: undefined,
   isVerifyingAuth: false,
 };
 
