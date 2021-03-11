@@ -9,8 +9,8 @@ import './YoutubeApp.css';
 export const YoutubeApp:React.FC = () => {
   return (
     <Switch>
-      <Route component={PrivateRoutesWrapper} />
       <Route exact path="/login" component={Login} />
+      <Route component={PrivateRoutesWrapper} />
     </Switch>
   );
 };

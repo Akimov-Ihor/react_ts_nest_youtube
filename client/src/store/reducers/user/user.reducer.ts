@@ -1,7 +1,7 @@
 import { LOGIN_SUCCESS } from '../../actions/user/user.actions';
 
 const initialState = {
-  userData: undefined,
+  userData: false,
   isVerifyingAuth: false,
 };
 
@@ -11,7 +11,7 @@ export const userReducer = (state = initialState, action:any) => {
       const { data } = action.payload;
       return {
         ...state,
-        isVerifyingAuth: true,
+        // isVerifyingAuth: true,
         userData: data,
       };
     }

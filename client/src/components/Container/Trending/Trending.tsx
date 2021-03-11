@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const Navbar:React.FC = () => {
+export const Trending:React.FC = () => {
   return (
     <div>
-      NavBAR
+      Trending
     </div>
   );
 };
