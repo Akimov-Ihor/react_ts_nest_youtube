@@ -1,13 +1,13 @@
 import React from 'react';
-import { RootStateOrAny, useSelector } from 'react-redux';
 
-export const Header:React.FC = () => {
-  const isLoggingIn = useSelector<RootStateOrAny>((state) => state.user.userData.isLoggingIn);
+import { HeaderINT } from './header.interface';
+
+export const Header = ({ isVerifyingAuth, userData }:HeaderINT) => {
+  console.log(isVerifyingAuth, userData);
   return (
     <>
-      {isLoggingIn
-        ? <div>Header</div>
-        : null}
+      <div>Header</div>
+
     </>
   );
 };
