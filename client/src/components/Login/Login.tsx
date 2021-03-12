@@ -34,12 +34,11 @@ export const Login:React.FC = () => {
   };
 
   useEffect(() => {
-    console.log(Object.keys(userData).length && !isVerifyingAuth);
     if (Object.keys(userData).length > 0 && !isVerifyingAuth) {
       history.push('/');
     }
-  });
-  console.log('inUser');
+  }, [userData, isVerifyingAuth, history]);
+
   return (
     <>
       {!isVerifyingAuth && !userData && (

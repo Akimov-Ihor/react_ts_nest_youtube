@@ -1,3 +1,6 @@
+// /** @jsxRuntime classic */
+// /** @jsx jsx */
+import { css, jsx } from '@emotion/react';
 import React, { useEffect } from 'react';
 
 import { Switch, useHistory } from 'react-router-dom';
@@ -26,7 +29,19 @@ export const Container:React.FC = () => {
   }, [history]);
 
   return (
-    <div>
+    <div css={css`
+         width: 100%;
+         height: 100%;
+         display: flex;
+         justify-content: space-between;
+            .trending,
+            .home,
+            .recommendation,
+            .video{
+           width: 100%;
+           }
+    `}
+    >
       <NavbarMenu />
       <Switch>
         <PrivateRoute
@@ -54,10 +69,7 @@ export const Container:React.FC = () => {
           isVerifyingAuth={isVerifyingAuth}
           path="/watch:1"
         />
-
       </Switch>
-
-      ;
       <NavbarVideo />
 
     </div>

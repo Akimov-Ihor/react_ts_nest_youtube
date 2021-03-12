@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Recommendation:React.FC = () => {
   return (
-    <div>
+    <div className="recommendation">
       Recommendation
     </div>
   );

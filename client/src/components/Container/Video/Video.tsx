@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Video:React.FC = () => {
   return (
-    <div>
+    <div className="video">
       <iframe
         allowFullScreen
         width="100%"

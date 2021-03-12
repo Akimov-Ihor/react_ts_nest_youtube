@@ -1,10 +1,16 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 export const NavbarMenu:React.FC = () => {
   return (
-    <div>
-      <nav className="navbar-nav">
+    <div css={css`
+         width: 20%;
+    `}
+    >
+      <nav className="navbar-nav ui vertical fluid tabular menu">
         <ul>
           <li>
             <NavLink to="/home">Home</NavLink>
