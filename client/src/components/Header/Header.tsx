@@ -31,7 +31,7 @@ export const Header:React.FC<HeaderINT> = ({ isVerifyingAuth, userData }) => {
         >
           <HeaderLogoContainer />
           <HeaderInput />
-          <HeaderProfile />
+          <HeaderProfile userData={userData} />
         </div>
       )}
     </React.Fragment>

@@ -5,8 +5,8 @@ export const Video:React.FC = () => {
     <div className="video">
       <iframe
         allowFullScreen
-        width="100%"
-        height="100%"
+        width="60%"
+        height="75%"
         title="test"
         src="https://www.youtube.com/embed/Aqk7x_w1H98"
       />
