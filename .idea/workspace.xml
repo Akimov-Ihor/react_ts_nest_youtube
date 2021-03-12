@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc6edee5-3257-40a1-854a-a9aa43e6963c" name="Default Changelist" comment="" />
+    <list default="true" id="fc6edee5-3257-40a1-854a-a9aa43e6963c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/app.controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/app.controller.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/app.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/app.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/app.module.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/app.module.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/app.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/app.module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/app.service.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/app.service.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/app.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/app.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/entities/User.entity.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/entities/User.entity.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/entities/User.entity.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/entities/User.entity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/main.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/main.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/dist/tsconfig.build.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/server/dist/tsconfig.build.tsbuildinfo" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,7 +35,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.19.0" />
     <property name="javascript.nodejs.core.library.typings.version" value="10.17.55" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/client" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
@@ -60,6 +73,10 @@
       <workItem from="1615363534930" duration="83000" />
       <workItem from="1615363619285" duration="2048000" />
       <workItem from="1615377587101" duration="1776000" />
+      <workItem from="1615450430522" duration="438000" />
+      <workItem from="1615450885092" duration="21000" />
+      <workItem from="1615450930014" duration="12000" />
+      <workItem from="1615450953082" duration="174000" />
     </task>
     <servers />
   </component>
