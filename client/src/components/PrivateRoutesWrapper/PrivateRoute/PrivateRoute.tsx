@@ -5,13 +5,14 @@ import { UserDataINF } from '../../../interface/userInterface';
 interface PrivateRouteINT {
   userData: UserDataINF;
   Component: React.ElementType;
+  setCurrentId?:(arg:any) => any,
   isVerifyingAuth: boolean;
   path:string;
 
 }
 
 export const PrivateRoute:React.FC<PrivateRouteINT> = ({
-  Component, userData, isVerifyingAuth, path, ...rest
+  Component, setCurrentId, userData, isVerifyingAuth, path, ...rest
 }) => {
   return (
     <Route
@@ -22,7 +23,7 @@ export const PrivateRoute:React.FC<PrivateRouteINT> = ({
           return <Redirect to={{ pathname: '/login' }} />;
         }
         if (Object.keys(userData).length && !isVerifyingAuth) {
-          return <Component {...props} />;
+          return <Component {...props} setCurrentId={setCurrentId} />;
         }
         return false;
       }}

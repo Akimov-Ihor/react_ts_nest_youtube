@@ -1,6 +1,13 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 export const Video:React.FC = () => {
+  const params = useParams();
+  // try {
+  //   console.log();
+  // } catch (e) { console.log(e); }
+  const path = `https://www.youtube.com/embed/${Object.keys(params)[0]}`;
+
   return (
     <div className="video">
       <iframe
@@ -8,7 +15,7 @@ export const Video:React.FC = () => {
         width="60%"
         height="75%"
         title="test"
-        src="https://www.youtube.com/embed/Aqk7x_w1H98"
+        src={`${path}`}
       />
     </div>
   );

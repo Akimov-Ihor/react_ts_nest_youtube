@@ -5,7 +5,7 @@ export const axiosService = axios.create({
   params:
     {
       part: 'snippet',
-      maxResults: 5,
+      maxResults: 9,
       key: process.env.REACT_APP_YOUTUBE_KEY,
     },
 });

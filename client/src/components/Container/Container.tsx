@@ -1,7 +1,7 @@
 // /** @jsxRuntime classic */
 // /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Switch, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -23,10 +23,13 @@ export const Container:React.FC = () => {
   const isVerifyingAuth: boolean = useSelector((state: MainStoreINT) => state.user.isVerifyingAuth);
   const userData: UserDataINF = useSelector((state: MainStoreINT) => state.user.userData);
 
+  const [curentId, setCurrentId] = useState<string|null>(null);
+
   useEffect(() => {
-    console.log('test');
-    history.push('/home');
-  }, [history]);
+    if (curentId !== null) {
+      history.push(`/watch/:${curentId}`);
+    }
+  }, [history, curentId]);
 
   return (
     <div css={css`
@@ -52,6 +55,7 @@ export const Container:React.FC = () => {
         />
 
         <PrivateRoute
+          setCurrentId={setCurrentId}
           userData={userData}
           Component={Trending}
           isVerifyingAuth={isVerifyingAuth}
@@ -67,7 +71,7 @@ export const Container:React.FC = () => {
           userData={userData}
           Component={Video}
           isVerifyingAuth={isVerifyingAuth}
-          path="/watch:1"
+          path={`/watch/:${curentId}`}
         />
       </Switch>
       <NavbarVideo />
