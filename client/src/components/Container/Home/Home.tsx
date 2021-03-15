@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
+import { axiosService } from '../../../services/api';
 
-export const Home = () => {
+export const Home:React.FC = () => {
   useEffect(() => {
-    axios
+    async function getListOfChannels() {
       // eslint-disable-next-line max-len
-      .get(`https://youtube.googleapis.com/youtube/v3/playlists?channelId=UCa6eupGBkdTjbxDCBGfZ6NA&key=${process.env.REACT_APP_YOUTUBE_KEY}`)
-      .then((response) => {
-        console.log(response.data.items);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      const listOfChannels = await axiosService.get(`/activitiespart=snippet%2CcontentDetails&channelId=${process.env['REACT_APP_CHANEL_ID ']}&maxResults=25&regionCode=tw)`);
+
+      console.log(listOfChannels);
+    }
+    getListOfChannels();
   }, []);
   return (
     <div className="home">Home</div>

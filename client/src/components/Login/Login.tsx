@@ -30,6 +30,7 @@ export const Login:React.FC = () => {
       return;
     }
     const token = response.tokenId;
+    localStorage.setItem('token', response.tokenId);
     await startLogin({ token })(dispatch);
   };
 
